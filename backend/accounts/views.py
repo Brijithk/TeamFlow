@@ -11,7 +11,9 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_protect
 from django.utils.decorators import method_decorator
 from rest_framework.views import APIView
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated 
+from .permissions import IsEmployee, IsTeamLead
+from .models import User
 
 class RegisterAPIView(generics.CreateAPIView):
     serializer_class = RegisterSerializer

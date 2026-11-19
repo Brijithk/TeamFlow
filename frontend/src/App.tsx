@@ -7,6 +7,7 @@ import TeamLeadDashboard from './pages/TeamLead/TeamLeadDashboard';
 import DashboardLayout from './layouts/DashboardLayout';
 import CreateTask from './pages/TeamLead/CreateTask';
 import ManageTasks from './pages/TeamLead/ManageTasks';
+import MyTasks from './pages/Employee/MyTasks';
 function App() {
 
      const { user } =useAuth()
@@ -25,7 +26,8 @@ function App() {
   } />
   <Route path='tasks' element={<ManageTasks />} />
   <Route path="tasks/create" element={<CreateTask />} />
-    
+  <Route path='my-tasks' element={<MyTasks />}/>
+
   
     </Route>
    

@@ -10,6 +10,11 @@ from .views import (
 
 urlpatterns = [
     path(
+        'team-lead/<int:pk>/',
+        TeamLeadTaskDetailAPIView.as_view(),
+        name='team-lead-tasks-detail'
+    ),
+    path(
         'team-lead/',
         TeamLeadTaskListCreateAPIView.as_view(),
         name='team-lead-tasks'
