@@ -17,3 +17,13 @@ export const getCurrentUser=async()=>{
      const response=await api.get("/api/accounts/me/")
      return response.data
 }
+
+export const registerUser= async(username:string,email:string,password:string)=>{
+     const response=await api.post("/api/accounts/register/",{username,email,password})
+     return response.data
+}
+
+export const createEmployee=async(username:string,email:string,password:string)=>{
+     const response=await api.post("/api/accounts/team-members/create/",{username,email,password})
+     return response.data
+}

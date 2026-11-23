@@ -10,11 +10,17 @@ function AuthProvider({children}:{children:ReactNode}){
     const [user,setUser]=useState<User | null>(null);
     const [loading,setLoading]=useState(true);
 
-              
+    const handleAuthFailure =()=>{
+                setUser(null)
+                    setLoading(false)
+
+    }     
+            
     useEffect(()=>{
+         window.addEventListener("auth-failed",handleAuthFailure)
       async function checkAuth(){
         try{
-
+         
        const recUser=await getCurrentUser()
       setUser(recUser)
         }
@@ -26,7 +32,9 @@ function AuthProvider({children}:{children:ReactNode}){
         }
     
     checkAuth();
-    }
+return () => {
+    window.removeEventListener("auth-failed", handleAuthFailure)
+}    }
         
     ,[]);
     return(

@@ -1,0 +1,286 @@
+.mtk-page {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: #111827;
+}
+
+/* Header */
+.mtk-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.mtk-title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  color: #111827;
+  letter-spacing: -0.02em;
+}
+
+.mtk-subtitle {
+  margin: 4px 0 0 0;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #6b7280;
+}
+
+.mtk-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mtk-secondary-btn {
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  background-color: #ffffff;
+  color: #374151;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.mtk-secondary-btn:hover:not(:disabled) {
+  background-color: #f9fafb;
+  border-color: #d1d5db;
+}
+
+.mtk-secondary-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.mtk-primary-btn {
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid #3b28ff;
+  background-color: #3b28ff;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.mtk-primary-btn:hover {
+  background-color: #2f1ee6;
+  border-color: #2f1ee6;
+}
+
+/* Card & Table */
+.mtk-card {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+  overflow: hidden;
+}
+
+.mtk-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.mtk-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.mtk-table th {
+  padding: 11px 18px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #6b7280;
+  background-color: #f9fafb;
+  border-bottom: 1px solid #e5e7eb;
+  white-space: nowrap;
+}
+
+.mtk-table td {
+  padding: 14px 18px;
+  font-size: 13.5px;
+  color: #374151;
+  border-bottom: 1px solid #f3f4f6;
+  vertical-align: middle;
+}
+
+.mtk-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.mtk-table tbody tr:hover {
+  background-color: #f9fafb;
+}
+
+.mtk-task-cell {
+  font-weight: 600;
+  color: #111827;
+}
+
+/* Assignee */
+.mtk-user-cell {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.mtk-avatar {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background-color: #eef2ff;
+  color: #3b28ff;
+  font-size: 11px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Priority */
+.mtk-priority {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  font-weight: 500;
+  text-transform: capitalize;
+  white-space: nowrap;
+}
+
+.mtk-priority-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+.mtk-priority-high {
+  color: #b91c1c;
+}
+.mtk-priority-high .mtk-priority-dot {
+  background-color: #ef4444;
+}
+
+.mtk-priority-medium {
+  color: #b45309;
+}
+.mtk-priority-medium .mtk-priority-dot {
+  background-color: #f59e0b;
+}
+
+.mtk-priority-low {
+  color: #4b5563;
+}
+.mtk-priority-low .mtk-priority-dot {
+  background-color: #9ca3af;
+}
+
+/* Status Badges */
+.mtk-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+  white-space: nowrap;
+}
+
+.mtk-badge-pending {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+.mtk-badge-progress {
+  background-color: #eef2ff;
+  color: #3b28ff;
+}
+
+.mtk-badge-completed {
+  background-color: #ecfdf5;
+  color: #047857;
+}
+
+.mtk-date-cell {
+  color: #6b7280;
+  white-space: nowrap;
+}
+
+/* Action Buttons */
+.mtk-actions-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mtk-edit-btn {
+  padding: 5px 11px;
+  border-radius: 7px;
+  border: 1px solid #e5e7eb;
+  background-color: #ffffff;
+  color: #374151;
+  font-size: 12.5px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.mtk-edit-btn:hover:not(:disabled) {
+  background-color: #eef2ff;
+  border-color: #c7d2fe;
+  color: #3b28ff;
+}
+
+.mtk-delete-btn {
+  padding: 5px 11px;
+  border-radius: 7px;
+  border: 1px solid #fecaca;
+  background-color: #ffffff;
+  color: #b91c1c;
+  font-size: 12.5px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.mtk-delete-btn:hover:not(:disabled) {
+  background-color: #fef2f2;
+  border-color: #fca5a5;
+}
+
+.mtk-edit-btn:disabled,
+.mtk-delete-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* Loading / Empty / Error States */
+.mtk-state-box {
+  padding: 44px 20px;
+  text-align: center;
+}
+
+.mtk-state-text {
+  margin: 0;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.mtk-state-error .mtk-state-text {
+  color: #b91c1c;
+  font-weight: 500;
+}

@@ -14,5 +14,13 @@ class User(AbstractUser):
         default=Role.EMPLOYEE
     )
 
+    team_lead= models.ForeignKey(
+         'self',
+         on_delete= models.SET_NULL,
+         null=True,
+         blank=True,
+         related_name="team_members"
+    )
+
     def __str__(self):
         return f"{self.username} - {self.role}"

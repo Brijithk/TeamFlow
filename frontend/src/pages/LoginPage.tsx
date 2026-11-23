@@ -3,6 +3,7 @@ import './LoginPage.css';
 import wallpaper from '../assets/images/wallpaper.jpg';
 import { useLogin } from "../hooks/useLogin";
 import useAuth from "../hooks/useAuth";
+import { Navigate, useNavigate } from 'react-router-dom';
 interface Slide {
   title: string;
   subtitle: string;
@@ -31,7 +32,7 @@ const slides: Slide[] = [
 const LoginPage=()=>{
        const {username,setUsername,password,setPassword,
         loading,error,handleLogin} =useLogin()
-    
+          const navigate=useNavigate()
    const {user}=useAuth()
   // const [email, setEmail] = useState<string>('David Brooks');
 //   const [password, setPassword] = useState<string>('********');
@@ -47,9 +48,7 @@ const LoginPage=()=>{
     }
     if (!password) {
       newErrors.password = 'Password is required';
-    } else if (password.length < 2) {
-      newErrors.password = 'Password must be at least 6 characters';
-    }
+    } 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -97,7 +96,7 @@ const LoginPage=()=>{
         {/* Right Side: Login Form */}
         <div className="login-right">
           <div className="form-container">
-            <h1 className="brand-logo">Teamflow</h1>
+            <h1 className="brandLogo">Teamflow</h1>
             <p className="welcome-text">Welcome to Teamflow</p>
 
             <form onSubmit={handleSubmit} className="login-form" noValidate>
@@ -149,22 +148,23 @@ const LoginPage=()=>{
                   </button>
                 </div>
                 {errors.password && <span className="error-text">{errors.password}</span>}
+                {password && error && <p className="error-text">{error}</p>}
               </div>
 
-              <div className="forgot-password">
+              {/* <div className="forgot-password">
                 <a href="#forgot">Forgot password?</a>
-              </div>
+              </div> */}
 
               <button type="submit" className="btn-signin" disabled={loading}>
                 {loading ? <span className="spinner"></span> : 'Sign in'}
               </button>
             </form>
 
-            <div className="divider">
+            {/* <div className="divider">
               <span>or</span>
-            </div>
+            </div> */}
 
-            <p className="signup-prompt">
+            <p className="signup-prompt" onClick={()=>{navigate("/register")}}>
               New to Teamflow? <a href="#create">Create Account</a>
             </p>
           </div>

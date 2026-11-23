@@ -4,6 +4,7 @@ import { getCurrentUser } from "../services/authService";
 import { getCsrfToken } from "../services/authService";
 import useAuth from "./useAuth";
 import {useNavigate} from "react-router"
+import axios from "axios";
 export const useLogin=()=>{
      const navigate=useNavigate()
     const [username,setUsername]=useState("")
@@ -27,8 +28,13 @@ export const useLogin=()=>{
     navigate("/dashboard")
     }
 
-    catch (e){
+    catch (e:unknown){
+        if (axios.isAxiosError(e) && e.response?.status === 401){
+                 setError("Invalid username or password.")   
+        }
+        else{
      setError("Login failed. Please try again.")
+        }
     }
     finally{
        setLoading(false)

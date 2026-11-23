@@ -1,18 +1,27 @@
-import {Outlet} from "react-router"
-import Sidebar from "../components/Sidebar"
-import Header from "../components/Header"
-const DashboardLayout = () =>{
-    return (<div>
-       <header>
-        <Header />
-       </header>
-       <aside>
-        <Sidebar />
-       </aside>
-       <main>
-        <Outlet />
-       </main>
-    </div>)
-}
+import React from "react";
+import { Outlet } from "react-router";
+import Sidebar from "../components/Sidebar";
+import Header from "../components/Header";
+import "./DashboardLayout.css";
 
-export default DashboardLayout
+const DashboardLayout: React.FC = () => {
+  return (
+    <div className="dashboard-layout">
+      <div className="dashboard-header">
+        <Header />
+      </div>
+
+      <div className="dashboard-body">
+        <aside className="dashboard-sidebar">
+          <Sidebar />
+        </aside>
+
+        <main className="dashboard-main">
+          <Outlet />
+        </main>
+      </div>
+    </div>
+  );
+};
+
+export default DashboardLayout;

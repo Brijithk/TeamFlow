@@ -1,6 +1,6 @@
 from rest_framework import generics
 from rest_framework.permissions import AllowAny
-from .serializers import RegisterSerializer ,EmployeeListSerializer
+from .serializers import RegisterSerializer ,EmployeeListSerializer ,CreateEmployeeSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.response import Response
 from rest_framework import status
@@ -22,7 +22,8 @@ class RegisterAPIView(generics.CreateAPIView):
 class EmployeeListAPIView(generics.ListAPIView):
     serializer_class = EmployeeListSerializer
     permission_classes = [IsAuthenticated,IsTeamLead]
-    queryset = User.objects.filter(role=User.Role.EMPLOYEE)
+    def get_queryset(self):
+        return User.objects.filter(role=User.Role.EMPLOYEE,team_lead=self.request.user)
       
 
 class LogoutAPIView(APIView):
@@ -82,5 +83,10 @@ class CurrentUserApiView(APIView):
             "role":request.user.role
         })
 
+class CreateEmployeeAPIView(generics.CreateAPIView):
+    serializer_class = CreateEmployeeSerializer
+    permission_classes = [IsAuthenticated, IsTeamLead]   
+
+    
 
 

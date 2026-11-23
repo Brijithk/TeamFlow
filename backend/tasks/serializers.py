@@ -6,7 +6,10 @@ from accounts.models import User
 class TaskSerializer(serializers.ModelSerializer):
 
     assigned_to_username = serializers.CharField(source='assigned_to.username', read_only=True)
-
+    created_by_username = serializers.CharField(
+    source='created_by.username',
+    read_only=True
+    )
     class Meta:
         model = Task
         fields = '__all__'
@@ -16,7 +19,8 @@ class TaskSerializer(serializers.ModelSerializer):
             'status',
             'created_at',
             'updated_at',
-            'assigned_to_username'
+            'assigned_to_username',
+            'created_by_username'
         ]
 
     def validate_assigned_to(self, value):

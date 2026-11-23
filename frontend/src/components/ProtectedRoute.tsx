@@ -1,11 +1,11 @@
 import useAuth from "../hooks/useAuth"
-import { useNavigate } from "react-router";
-import { BrowserRouter, Routes,Route } from "react-router";
 import { Navigate,Outlet } from "react-router";
-const ProtectedRoute = () =>{
-    const navigate = useNavigate();
-   const {user,loading} =useAuth()
 
+interface allowedRoleType{
+  allowedRole?:"TEAM_LEAD" | "EMPLOYEE"
+}
+const ProtectedRoute = ({ allowedRole }: allowedRoleType) =>{
+   const {user,loading} =useAuth()
    if (loading){
      return <p>Loading...</p>
    }
@@ -15,7 +15,12 @@ const ProtectedRoute = () =>{
          return <Navigate to="/login" replace />
     }
     else{
+      if(allowedRole && allowedRole !== user.role){
+          return <Navigate to="/dashboard" replace />
+      }
+      else{
             return <Outlet />
+      }
     }
    
   

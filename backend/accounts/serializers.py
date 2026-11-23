@@ -16,7 +16,7 @@ class RegisterSerializer(serializers.ModelSerializer):
                 username=validated_data['username'],
                 email=validated_data['email'],
                 password=validated_data['password'],
-                role=User.Role.Employee
+                role=User.Role.TEAM_LEAD
             )
             return user
 
@@ -26,3 +26,27 @@ class EmployeeListSerializer(serializers.ModelSerializer):
     model= User
     fields=['id','username','email']
     read_only_fields=['id','username','email']
+
+
+class CreateEmployeeSerializer(serializers.ModelSerializer):
+
+    password=serializers.CharField(
+      write_only=True,
+      min_length=8
+    )
+
+
+    class Meta:
+      model=User
+      fields=['id','username','email','password']
+      read_only_fields=['id']
+    def create(self,validated_data):
+            user=User.objects.create_user(
+                username=validated_data['username'],
+                email=validated_data['email'],
+                password=validated_data['password'],
+                role=User.Role.EMPLOYEE,
+                team_lead=self.context['request'].user
+            )
+            return user
+   

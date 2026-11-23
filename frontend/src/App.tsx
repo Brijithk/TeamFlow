@@ -8,6 +8,11 @@ import DashboardLayout from './layouts/DashboardLayout';
 import CreateTask from './pages/TeamLead/CreateTask';
 import ManageTasks from './pages/TeamLead/ManageTasks';
 import MyTasks from './pages/Employee/MyTasks';
+import TaskDetails from './pages/Employee/TaskDetails';
+import TaskHistory from './pages/Employee/TaskHistory';
+import RegisterPage from './pages/RegisterPage';
+import TeamMembers from './pages/TeamLead/TeamMembers';
+import CreateEmployee from './pages/TeamLead/CreateEmployee';
 function App() {
 
      const { user } =useAuth()
@@ -15,6 +20,7 @@ function App() {
   <BrowserRouter>
   <Routes>
       <Route path="/login" element={<LoginPage />} />
+       <Route path="/register" element={<RegisterPage />} />
   <Route element={<ProtectedRoute />}>
 
     <Route path="/dashboard" element={<DashboardLayout />}>
@@ -24,9 +30,20 @@ function App() {
     <EmployeeDashboard /> :
         <TeamLeadDashboard />
   } />
+  <Route element={<ProtectedRoute allowedRole="TEAM_LEAD" />}>
   <Route path='tasks' element={<ManageTasks />} />
   <Route path="tasks/create" element={<CreateTask />} />
+     <Route path='team' element={<TeamMembers />}/>
+            <Route path='team/create' element={<CreateEmployee />}/>
+</Route>
+<Route element={<ProtectedRoute allowedRole="EMPLOYEE" />}>
   <Route path='my-tasks' element={<MyTasks />}/>
+   <Route path='my-tasks/:id' element={<TaskDetails />}/>
+</Route>
+
+     <Route path='history' element={<TaskHistory />}/>
+   
+   
 
   
     </Route>
@@ -34,6 +51,7 @@ function App() {
     
 
     </Route>
+    
     </Routes>
   </BrowserRouter>
   )
