@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { registerUser } from "../services/authService";
 import wallpaper from "../assets/images/wallpaper.jpg";
 import "./RegisterPage.css";
-
+import axios from "axios";
 interface Slide {
   title: string;
   subtitle: string;
@@ -84,8 +84,8 @@ const RegisterPage: React.FC = () => {
       return;
     }
 
-    if (password.length < 4 || confirmPassword.length < 4) {
-      setError("Password must contain atleast 4 characters");
+    if (password.length < 4 || confirmPassword.length < 8) {
+      setError("Password must contain atleast 8 characters");
       return;
     }
 
@@ -100,7 +100,17 @@ const RegisterPage: React.FC = () => {
       setSuccess("Account created successfully!");
       navigate("/login");
     } catch (e) {
+      if(axios.isAxiosError(e) && e.response?.data.username?.[0] === "A user with that username already exists.")
+      {
+        setError("A user with that username already exists.")
+      }
+      else if(axios.isAxiosError(e) && e.response?.data.email?.[0] === "user with this email already exists.")
+      {
+        setError("user with this email already exists.")
+      }
+      else{
       setError("Error while making api call");
+      }
     } finally {
       setLoading(false);
     }

@@ -6,6 +6,16 @@ from .views import (
     EmployeeTaskListAPIView,
     EmployeeTaskStatusUpdateAPIView,
     TaskHistoryListAPIView,
+       ProjectTaskCreateView,
+    ProjectTaskListView,
+     TaskDetailsView,
+     TaskUpdateView,
+     TaskStatusUpdateView,
+     TaskActivityListView,
+     ProjectKanbanBoardView,
+     TaskCommentListCreateView,
+TaskCommentDetailView,
+ProjectDashboardView
 )
 
 urlpatterns = [
@@ -39,4 +49,57 @@ urlpatterns = [
         TaskHistoryListAPIView.as_view(),
         name='task-history'
     ),
+        path(
+        'projects/<int:project_id>/tasks/',
+        ProjectTaskCreateView.as_view(),
+        name='project-task-create'
+    ),
+      path(
+        'projects/<int:project_id>/tasks/list/',
+        ProjectTaskListView.as_view(),
+        name='project-task-list'
+    ),
+        path(
+        'projects/<int:project_id>/tasks/<int:task_id>/',
+        TaskDetailsView.as_view(),
+        name='task-details'
+    ),
+    path(
+    'projects/<int:project_id>/tasks/<int:task_id>/update/',
+    TaskUpdateView.as_view(),
+    name='task-update'
+),
+path(
+    'projects/<int:project_id>/tasks/<int:task_id>/status/',
+    TaskStatusUpdateView.as_view(),
+    name='task-status-update'
+),
+
+path(
+    'projects/<int:project_id>/tasks/<int:task_id>/comments/',
+    TaskCommentListCreateView.as_view(),
+    name='task-comments'
+),
+path(
+    'projects/<int:project_id>/tasks/<int:task_id>/comments/<int:comment_id>/',
+    TaskCommentDetailView.as_view(),
+    name='task-comment-detail'
+),
+
+path(
+    'projects/<int:project_id>/tasks/<int:task_id>/activities/',
+    TaskActivityListView.as_view(),
+    name='task-activities'
+),
+path(
+    'projects/<int:project_id>/board/',
+    ProjectKanbanBoardView.as_view(),
+    name='project-kanban-board'
+),
+
+path(
+    'projects/<int:project_id>/dashboard/',
+    ProjectDashboardView.as_view(),
+    name='project-dashboard'
+),
 ]

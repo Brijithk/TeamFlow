@@ -13,6 +13,7 @@ import TaskHistory from './pages/Employee/TaskHistory';
 import RegisterPage from './pages/RegisterPage';
 import TeamMembers from './pages/TeamLead/TeamMembers';
 import CreateEmployee from './pages/TeamLead/CreateEmployee';
+import WorkspaceDashboard from './pages/dashboard/WorkspaceDashboard';
 function App() {
 
      const { user } =useAuth()
@@ -24,12 +25,17 @@ function App() {
   <Route element={<ProtectedRoute />}>
 
     <Route path="/dashboard" element={<DashboardLayout />}>
-     
+       {/* <Route
+    path="/dashboard1"
+    element={<WorkspaceDashboard />}
+/> */}
+<Route index element={<WorkspaceDashboard />} />
+{/* <Route path="workspace" element={<WorkspaceDashboard />} />
     <Route index element={
      user?.role === "EMPLOYEE" ?
     <EmployeeDashboard /> :
         <TeamLeadDashboard />
-  } />
+  } /> */}
   <Route element={<ProtectedRoute allowedRole="TEAM_LEAD" />}>
   <Route path='tasks' element={<ManageTasks />} />
   <Route path="tasks/create" element={<CreateTask />} />
