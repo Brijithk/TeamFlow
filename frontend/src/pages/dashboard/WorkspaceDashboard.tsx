@@ -32,7 +32,7 @@ const handleCreateProject = async (projectData: {
   key: string;
   description: string;
   status: "PLANNING" | "ACTIVE" | "ON_HOLD";
-}) => {
+}) => { 
   try {
     setError("");
 
